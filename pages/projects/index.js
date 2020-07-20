@@ -1,7 +1,7 @@
 import React from 'react'
-import Page from '../components/Page'
-import Layout from '../components/layout'
-import StoryblokService from '../utils/storyblok-service'
+import Page from '../../components/Page'
+import Layout from '../../components/layout'
+import StoryblokService from '../../utils/storyblok-service'
 
 export default class extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class extends React.Component {
     StoryblokService.setQuery(query)
 
     let [page, settings] = await Promise.all([
-      StoryblokService.get('cdn/stories/home'),
+      StoryblokService.get('cdn/stories/projects'),
       StoryblokService.get('cdn/stories/settings')
     ])
 

@@ -1,56 +1,82 @@
-import React from 'react'
-import Link from 'next/link'
+import Link from 'next/link';
+import styled from 'styled-components';
 
-const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' }
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
+const Nav = ({ settings }) => (
+  <NavStyled>
+    <NavWrapper className="l-page">
+      <LogoWrapper>
+        <a>My Logo...</a>
+      </LogoWrapper>
 
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href='/'>
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+      <ContentWrapper>
+        {settings &&
+          settings.content.main_navi.map((navItem, index) => {
+            return (
+              <Link href="googe.com" key={index}>
+                <a>{navItem.name}</a>
+              </Link>
+            );
+          })}
+      </ContentWrapper>
+    </NavWrapper>
+  </NavStyled>
+);
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
-)
+export default Nav;
 
-export default Nav
+const NavStyled = styled.nav`
+  background: black;
+  padding: 20px;
+  color: white;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+`;
+
+const NavWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const LogoWrapper = styled.div`
+  flex: 1;
+`;
+
+const ContentWrapper = styled.div`
+
+  &:hover a {
+    filter: blur(1px);
+  }
+  a {
+    margin: 0 40px;
+    padding-bottom: 5px;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    font-weight: 500;
+    position: relative;
+  }
+
+  a::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transform-origin: 0 0;
+    transform: scaleX(0);
+    height: 3px;
+    background: #ffc600;
+    transition: transform 0.3s ease;
+  }
+
+  a:hover {
+    filter: blur(0);
+  }
+
+  a:hover:before {
+    transform: scaleX(1);
+  }
+`;
