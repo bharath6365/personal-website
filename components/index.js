@@ -7,6 +7,8 @@ import Banner from './Banner'
 import SectionHeader from './common/typography/SectionHeader';
 import SectionTextContent from './sections/SectionTextContent';
 import SectionProjectCard from './sections/SectionProjectCard';
+import Tags from './common/Tags';
+import SingleTag from './common/SingleTag';
 
 const Components = {
   'teaser': Teaser,
@@ -16,7 +18,9 @@ const Components = {
   'Banner': Banner,
   'section-header': SectionHeader,
   'section-text-content': SectionTextContent,
-  'section-project-card': SectionProjectCard
+  'section-project-card': SectionProjectCard,
+  'Tags': Tags,
+  'SingleTag': SingleTag
 }
 
 const Component = ({blok}) => {

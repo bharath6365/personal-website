@@ -3,6 +3,15 @@ import GlobalTheme from './Global-Theme';
 const GlobalStyles =  createGlobalStyle`
   * {
     color: black;
+    font-family: 'Vollkorn', serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  h1, h2, h3, h4,h5, h6 {
+    font-family: 'Roboto Condensed', sans-serif;
   }
 
   p {
@@ -30,6 +39,7 @@ const GlobalStyles =  createGlobalStyle`
 
   .highlighter-heading {
     padding: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
     background: ${GlobalTheme.primary};
     color: black;
     transform: skewX(0deg);

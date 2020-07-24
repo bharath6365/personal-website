@@ -1,6 +1,6 @@
 const GlobalTheme  = {
   primary: '#ffc600',
-  secondary: '#ff9bbf'
+  secondary: '#CDA291'
 }
 
 export default GlobalTheme;

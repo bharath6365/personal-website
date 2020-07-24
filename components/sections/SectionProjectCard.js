@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import RichText from '../common/typography/Richtext';
 import SbEditable from 'storyblok-react';
 import SectionHeader from '../common/typography/SectionHeader';
+import Tags from '../common/Tags';
 
 const SectionProjectCard = ({ blok }) => {
   return (
@@ -37,6 +38,8 @@ const SectionProjectCard = ({ blok }) => {
             </StyledHeader>
 
             <RichText content={blok.text_content.content} />
+
+            <Tags content={blok.tags[0]} />
           </StyledTextWrapper>
         </StyledContentWrapper>
       </StyledProjectSection>
