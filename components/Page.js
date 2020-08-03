@@ -4,7 +4,7 @@ import SbEditable from 'storyblok-react'
 const Page = ({body}) => (
   <SbEditable content={body}>
   <main>
-    {body.map((blok) =>
+    {body && body.map((blok) =>
       <Component blok={blok} key={blok._uid} />
     )}
   </main>

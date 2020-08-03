@@ -8,7 +8,6 @@ import {
 
 const Footer = ({ settings }) => {
   const footerContent= settings.content.main_footer[0];
-  console.log('Footer Content is', footerContent);
   return (
     <StyledFooter>
       <Particles particleType="nasa" />

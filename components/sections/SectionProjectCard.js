@@ -47,27 +47,6 @@ const SectionProjectCard = ({ blok }) => {
   );
 };
 
-/*
-  Blok is { _uid: '18ba1f7d-1661-4ab7-aaa7-c9f1ba198eba',
-  title: 'Hungry Cobra',
-  component: 'section-project-card',
-  github_link: 'https://github.com/bharath6365/snake-game',
-  project_link: 'https://hungry-cobra.now.sh/',
-  text_content: { type: 'doc', content: [ [Object] ] },
-  thumbnail_image:
-   { id: 1264947,
-     alt: null,
-     name: '',
-     focus: null,
-     title: null,
-     filename:
-      'https://a.storyblok.com/f/87634/1444x1452/15291f25a1/cobra.png',
-     copyright: null,
-     fieldtype: 'asset' } }
-
-
-*/
-
 export default SectionProjectCard;
 
 const StyledProjectSection = styled.section`background: #000;`;

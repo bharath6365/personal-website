@@ -15,6 +15,11 @@ const Tags = ({ content }) => {
 
 const StyledTagsWrapper = styled.div`margin: 30px 0 10px;`;
 
-const StyledTagContainer = styled.div`text-align: right;`;
+const StyledTagContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  text-align: right;
+`;
 
 export default Tags;
