@@ -13,11 +13,11 @@ const Tags = ({ content }) => {
   );
 };
 
-const StyledTagsWrapper = styled.div`margin: 30px 0 10px;`;
+const StyledTagsWrapper = styled.div`margin: 20px 0 10px;`;
 
 const StyledTagContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-wrap: wrap;
   text-align: right;
 `;

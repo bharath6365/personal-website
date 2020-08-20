@@ -7,20 +7,31 @@ import SectionHeader from '../common/typography/SectionHeader';
 import Tags from '../common/Tags';
 import SummaryCard from '../common/SummaryCard';
 
-const SectionSummaryCards = ({ blok }) => {
+const handleIndexClick=(e) => {
+  const id = '#' + e.target.textContent;
+  const element = document.getElementById(id);
+  element.scrollIntoView({behavior: 'smooth'});  
+}
+
+const SectionSummaryCards = ({ blok, settings }) => {
   return (
     <SbEditable content={blok}>
       <StyledSummaryCardsSection>
         <StyledContainer className="l-page">
           {/* Index */}
           <StyledIndex>
-            <StyledList>{blok.cards.map((card) => <li key={card.heading}>{card.left_heading}</li>)}</StyledList>
+            <StyledList>{blok.cards.map((card) => 
+              <li onClick={handleIndexClick} key={card.heading}>
+                {card.heading}
+              </li>
+            )}
+            </StyledList>
           </StyledIndex>
 
           {/* Cards */}
           <StyledCardsWrapper>
             {blok.cards.map((card) => (
-              <SummaryCard key={card.left_heading} card={card} />
+              <SummaryCard settings={settings} id={card.heading} key={card.heading} card={card} />
             ))}
           </StyledCardsWrapper>
         </StyledContainer>
@@ -48,6 +59,8 @@ const StyledList = styled.ul`
   li {
     color: white;
     cursor: pointer;
+    padding: 4px 0;
+    font-size: 1.25rem;
   }
 `;
 

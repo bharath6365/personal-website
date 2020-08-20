@@ -43,6 +43,14 @@ const RichText = ({content, textColor}) => {
               ElementTag = `pre`
             break;
 
+            case "bullet_list":
+              ElementTag = "ul"
+            break;
+
+            case "ordered_list":
+              ElementTag = "ol"
+            break;
+
             case "horizontal_rule":
               ElementTag = `hr`
             break;

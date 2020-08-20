@@ -54,8 +54,14 @@ const GlobalStyles =  createGlobalStyle`
   }
   
   .background-primary {
-    background: ${GlobalTheme.secondary + "B2"};
+    background: ${GlobalTheme.primary};
     padding: 10px;
+    display: inline-block;
+    transform: skewX(-12deg)
+  }
+
+  .compressed-margin {
+    margin: 0;
   }
 
   h1,h2,h3,h4,h5,h6, p {
@@ -87,16 +93,26 @@ const GlobalStyles =  createGlobalStyle`
     text-align: center;
   }
 
-  section {
-    padding: 50px 0;
+  .small-card:hover~.small-card {
+    transform: translateX(130px);
   }
 
-  body::-webkit-scrollbar {
-    width: 0.875rem;
+
+  section {
+    padding: 50px 0;
+
+    header {
+      max-width: 50vw;
+      margin: auto;
+    }
+  }
+
+  *::-webkit-scrollbar {
+    width: 0.75rem;
     background: rgb(48, 48, 48);
   }
 
-  body::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background: ${GlobalTheme.primary};
     height: 10px;
     border-radius: 30px;

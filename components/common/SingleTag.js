@@ -4,17 +4,20 @@ const SingleTag = ({tag}) => {
   return (
       <StyledWrapper>
         {tag.title}
+        {tag.progress && (
+          <StyledProgress progress={tag.progress} />
+        )}
       </StyledWrapper>
   )
 }
 
 const StyledWrapper = styled.div`
   display: inline-block;
-  margin: 0.5rem;
-  font-size: 1rem;
-  padding: 8px 15px ;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  font-size: 0.875rem;
+  padding: 5px 10px ;
   border-radius: 3px;
-  background: rgba(226, 226, 226, 0.533);
+  background: rgb(242 236 227);
   position: relative;
   cursor: pointer;
 
@@ -27,6 +30,17 @@ const StyledWrapper = styled.div`
     height: 3px;
     background: ${(props) => props.theme.primary};
   }
+`
+
+const StyledProgress = styled.span`
+  position: absolute;
+  content: '';
+  height: 3px;
+  width: ${(props => props.progress + '%')};
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  background: #13946e;
 `
 
 export default SingleTag;

@@ -1,23 +1,37 @@
 // Component for displaying the Section Header.
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import SbEditable from 'storyblok-react';
 import PrimitiveTextContent from './typography/PrimitiveTextContent';
+import Tags from './Tags';
+import Richtext from './typography/Richtext';
+import ResourceCards from './ResourceCards';
 
-const SummaryCard = ({ card }) => {
-  console.log('Card Body is', card.body);
-  const ElementTag = `PrimitiveTextContent`
+const SummaryCard = ({ settings, card, id }) => {
   return (
-    <StyledCard>
+    <StyledCard id={"#" + id}>
+      <StyledHeader>
         <StyledHeadingPrimary>{card.heading}</StyledHeadingPrimary>
+        {card.description && (
+          <Richtext content={card.description.content} />
+        )}
+      </StyledHeader>
       
+
       <StyledRight>
-        {card.body && card.body.map(component => (
-          <PrimitiveTextContent key={component._uid} body={component.body} />
-        ))}
+        {card.body &&
+          card.body.map((component) => {
+            if (component.component === 'primitive-text-content') {
+              return <PrimitiveTextContent key={component._uid} body={component.body} />;
+            } else if (component.component === 'Tags') {
+              return <Tags content={component} />;
+            } else if (component.component === 'section-resource-cards') {
+              return <ResourceCards enableVerticalBoxShadow={false} cards={settings.content.project_cards} />
+            }
+          })}
       </StyledRight>
     </StyledCard>
-  )};
+  );
+};
 
 export default SummaryCard;
 
@@ -40,8 +54,7 @@ const StyledCard = styled.div`
     width: 0%;
     height: 0%;
     transition: all 0.4s linear;
-    border: 8px solid transparent;
-    
+    border: 6px solid transparent;
   }
 
   &:before {
@@ -57,19 +70,19 @@ const StyledCard = styled.div`
     border-left: 0;
     border-top: 0;
   }
-
-  &:hover {
+  
+  &:focus-within {
     transform: translateY(-2px);
     &:before {
-      border: 8px solid ${props => props.theme.secondary};
-      height:100%;
+      border: 6px solid ${(props) => props.theme.secondary};
+      height: 100%;
       width: 100%;
       border-right: 0;
       border-bottom: 0;
     }
 
     &:after {
-      border: 8px solid ${props => props.theme.secondary};
+      border: 6px solid ${(props) => props.theme.secondary};
       height: 100%;
       width: 100%;
       border-left: 0;
@@ -78,16 +91,16 @@ const StyledCard = styled.div`
   }
 `;
 
+const StyledHeader = styled.div`
+  margin-bottom: 45px;
+`;
+
 const StyledHeadingPrimary = styled.h3`
   font-size: 2.25rem;
   font-weight: 500;
   letter-spacing: 0.4px;
   text-decoration: underline;
-  text-decoration-color: ${props => props.theme.secondary};
-  margin-bottom: 45px;
+  text-decoration-color: ${(props) => props.theme.secondary};
 `;
 
-const StyledRight = styled.div`
-
-`;
-
+const StyledRight = styled.div``;

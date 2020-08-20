@@ -36,7 +36,7 @@ export default class extends React.Component {
     return (
       <Layout settings={settingsContent}>
         {/* We will define these settings later on */}
-        <Page body={bodyOfPage} />
+        <Page settings={settingsContent} body={bodyOfPage} />
       </Layout>
     )
   }

@@ -91,7 +91,7 @@ const StyledIconWrapper = styled.div`
   transition: all 0.5s ease-in-out;
   border: 1px solid transparent;
 
-  &: hover {
+  &:hover {
     background: ${(props) => props.theme.secondary};
     border: 1px solid black;
   }

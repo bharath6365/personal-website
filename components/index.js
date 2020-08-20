@@ -5,6 +5,8 @@ import SectionHeader from './common/typography/SectionHeader';
 import SectionTextContent from './sections/SectionTextContent';
 import SectionProjectCard from './sections/SectionProjectCard';
 import SectionSummaryCards from './sections/SectionSummaryCards';
+import SectionResourceCards from './sections/SectionResourceCards';
+
 import Tags from './common/Tags';
 import SingleTag from './common/SingleTag';
 import SummaryCard from './common/SummaryCard'
@@ -16,16 +18,17 @@ const Components = {
   'section-text-content': SectionTextContent,
   'section-project-card': SectionProjectCard,
   'section-summary-cards': SectionSummaryCards,
+  'section-resource-cards': SectionResourceCards,
   'summary-card': SummaryCard,
   'Tags': Tags,
   'SingleTag': SingleTag,
   'primitive-text-content': PrimitiveTextContent
 }
 
-const Component = ({blok}) => {
+const Component = ({blok, settings}) => {
   if (typeof Components[blok.component] !== 'undefined') {
     const Component = Components[blok.component]
-    return <Component blok={blok} />
+    return <Component settings={settings} blok={blok} />
   }
   return <Placeholder componentName={blok.component}/>
 }
