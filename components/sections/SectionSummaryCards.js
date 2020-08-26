@@ -6,17 +6,21 @@ import SbEditable from 'storyblok-react';
 import SectionHeader from '../common/typography/SectionHeader';
 import Tags from '../common/Tags';
 import SummaryCard from '../common/SummaryCard';
+import GlobalConstants from '../../styles/Global-Constants';
 
 const handleIndexClick=(e) => {
+  const bodyRect = document.body.getBoundingClientRect().top;
   const id = '#' + e.target.textContent;
   const element = document.getElementById(id);
-  element.scrollIntoView({behavior: 'smooth'});  
+  // Nav is absolutely positioned
+  const top = element.getBoundingClientRect().top - bodyRect - GlobalConstants.navHeight - 10;
+  window.scrollTo({top, behavior: 'smooth'});  
 }
 
 const SectionSummaryCards = ({ blok, settings }) => {
   return (
     <SbEditable content={blok}>
-      <StyledSummaryCardsSection>
+      <StyledSummaryCardsSection className="dark">
         <StyledContainer className="l-page">
           {/* Index */}
           <StyledIndex>
@@ -53,14 +57,14 @@ const StyledIndex = styled.div`width: 30%;`;
 
 const StyledList = styled.ul`
   position: sticky;
-  top: 20px;
+  top: ${GlobalConstants.navHeight + 20 + "px"};
   left: 0;
 
   li {
     color: white;
     cursor: pointer;
     padding: 4px 0;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 `;
 

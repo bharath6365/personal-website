@@ -54,7 +54,8 @@ const StyledCard = styled.div`
     width: 0%;
     height: 0%;
     transition: all 0.4s linear;
-    border: 6px solid transparent;
+    border: 3px solid transparent;
+    z-index: -1;
   }
 
   &:before {
@@ -71,10 +72,10 @@ const StyledCard = styled.div`
     border-top: 0;
   }
   
-  &:focus-within {
+  &:hover {
     transform: translateY(-2px);
     &:before {
-      border: 6px solid ${(props) => props.theme.secondary};
+      border: 3px solid ${(props) => props.theme.secondary};
       height: 100%;
       width: 100%;
       border-right: 0;
@@ -82,7 +83,7 @@ const StyledCard = styled.div`
     }
 
     &:after {
-      border: 6px solid ${(props) => props.theme.secondary};
+      border: 3px solid ${(props) => props.theme.secondary};
       height: 100%;
       width: 100%;
       border-left: 0;

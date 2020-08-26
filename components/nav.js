@@ -1,18 +1,19 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import GlobalConstants from '../styles/Global-Constants';
 
 const Nav = ({ settings }) => (
   <NavStyled>
     <NavWrapper className="l-page">
       <LogoWrapper>
-        <a>My Logo...</a>
+        <img src="/images/bee.png" />
       </LogoWrapper>
 
       <ContentWrapper>
         {settings &&
           settings.content.main_navi.map((navItem, index) => {
             return (
-              <Link href="googe.com" key={index}>
+              <Link href={navItem.link.url} key={navItem._uid}>
                 <a>{navItem.name}</a>
               </Link>
             );
@@ -26,8 +27,14 @@ export default Nav;
 
 const NavStyled = styled.nav`
   background: black;
-  padding: 20px;
   color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: ${GlobalConstants.navHeight + "px"};
+  z-index: 100;
+  display: flex;
 
   a {
     color: white;
@@ -38,10 +45,16 @@ const NavStyled = styled.nav`
 const NavWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const LogoWrapper = styled.div`
   flex: 1;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const ContentWrapper = styled.div`

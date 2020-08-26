@@ -9,7 +9,7 @@ const SectionResourceCards = ({ settings, blok }) => {
   const cards = settings.content.project_cards;
   return (
     <SbEditable content={blok}>
-      <StyledResourcelCardsSection>
+      <StyledResourcelCardsSection className="dark">
         <StyledContainer className="l-page">
           <StyledHeader>
             <h2>{blok.heading}</h2>
@@ -26,7 +26,6 @@ const SectionResourceCards = ({ settings, blok }) => {
 export default SectionResourceCards;
 
 const StyledResourcelCardsSection = styled.section`
-  background: #000;
   color: white;
 `;
 
@@ -37,7 +36,7 @@ const StyledContainer = styled.div`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #201c29;
+    background: #0f0b18;
     border-radius: 10px;
     box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25), inset -2px -2px 2px rgba(0,0,0,.25);
   }

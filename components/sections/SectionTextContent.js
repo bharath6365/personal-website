@@ -8,16 +8,25 @@ import SectionHeader from '../common/typography/SectionHeader';
 const SectionTextContent = ({blok}) => {
   return (
     <SbEditable content={blok}>
-      <section>
+      <StyledSection className={blok.background}>
         <div className="l-page short">
         <SectionHeader textContent={blok.header[0].text_content} />
 
         <RichText content={blok.body.content} />
         </div>
-      </section>
+      </StyledSection>
     </SbEditable>
   )
 }
+
+const StyledSection = styled.section `
+  &.dark {
+    * {
+      color: white;
+    }
+  }
+`;
+
 
 
 export default SectionTextContent;

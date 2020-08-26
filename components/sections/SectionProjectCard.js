@@ -9,7 +9,7 @@ import Tags from '../common/Tags';
 const SectionProjectCard = ({ blok }) => {
   return (
     <SbEditable content={blok}>
-      <StyledProjectSection>
+      <StyledProjectSection className="dark">
         <StyledContentWrapper>
           {/* <StyledThumbnail
             src={blok.thumbnail_image.filename}
@@ -49,7 +49,7 @@ const SectionProjectCard = ({ blok }) => {
 
 export default SectionProjectCard;
 
-const StyledProjectSection = styled.section`background: #000;`;
+const StyledProjectSection = styled.section``;
 
 const StyledContentWrapper = styled.div`
   max-width: 65vw;

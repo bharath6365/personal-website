@@ -46,6 +46,7 @@ const StyledInitialContent = styled.div`
   transition: transform 0.25s ease;
   font-size: 1.25rem;
   transform-origin: left center;
+  color: #edd5f4;
 `;
 
 const StyledHoverContent = styled.div`
@@ -53,36 +54,6 @@ const StyledHoverContent = styled.div`
   opacity: 0;
   transition: all 0.5s ease-in;
   padding: 0 10px;
-`;
-
-const StyledCard = styled.div`
-  min-width: 300px;
-  min-height: 350px;
-  padding: 1.5rem;
-  border-radius: 15px;
-  overflow: hidden;
-  background: #17141d;
-  box-shadow: ${(props) => props.enableVerticalBoxShadow ? "-1rem 0 3rem #000": "-1rem 0 1rem #000"};
-  transition: all .3s ease; 
-  color: white;
-  margin: 0;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-1rem);
-
-    ${StyledHoverContent} {
-      opacity: 1;
-    }
-
-    ${StyledInitialContent} {
-      transform: scale(1.45);
-    }  
-  }
-
-  &:not(:first-child) {
-    margin-left: -130px;
-  }
 `;
 
 const StyledImageContainer = styled.div`
@@ -95,5 +66,42 @@ const StyledImageContainer = styled.div`
     overflow: hidden;
   }
 `;
+
+const StyledCard = styled.div`
+  min-width: 300px;
+  min-height: 350px;
+  padding: 1.5rem;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #0f0b18;
+  box-shadow: ${(props) => props.enableVerticalBoxShadow ? "-1rem 0 3rem #000": "-1rem 0 1rem #000"};
+  transition: all .3s ease; 
+  color: white;
+  margin: 0;
+  cursor: pointer;
+  z-index: 300;
+
+  &:hover {
+    transform: translateY(-1rem);
+
+    ${StyledHoverContent} {
+      opacity: 1;
+    }
+
+    ${StyledInitialContent} {
+      transform: scale(1.45);
+    }
+
+    img {
+      filter: blur(0px);
+    }  
+
+  }
+
+  &:not(:first-child) {
+    margin-left: -130px;
+  }
+`;
+
 
 export default ResourceCards;

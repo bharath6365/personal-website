@@ -21,6 +21,7 @@ const StyledBannerContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+  text-align: center;
 `;
 
 const Banner = ({ blok }) => {
