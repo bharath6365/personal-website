@@ -1,21 +1,25 @@
 // Component for displaying the Section Header.
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import RichText from '../common/typography/Richtext';
 import SbEditable from 'storyblok-react';
+import {FaArrowLeft} from 'react-icons/fa';
 import SectionHeader from '../common/typography/SectionHeader';
 import Tags from '../common/Tags';
+import GlobalConstants from '../../styles/Global-Constants';
 
 const SectionProjectCard = ({ blok }) => {
   return (
     <SbEditable content={blok}>
       <StyledProjectSection className="dark">
+        <Link href="/projects">
+          <StyledBreadCrumb>
+            <FaArrowLeft />
+              Projects
+          </StyledBreadCrumb>
+        </Link>
         <StyledContentWrapper>
-          {/* <StyledThumbnail
-            src={blok.thumbnail_image.filename}
-            title={blok.thumbnail_image.title}
-            alt={blok.thumbnail_image.alt}
-          /> */}
 
           <StyledTextWrapper>
             <StyledHeader>
@@ -55,13 +59,35 @@ const StyledContentWrapper = styled.div`
   max-width: 65vw;
   margin: auto;
   background: #fff;
+
+  @media ${GlobalConstants.tabletMediaQuery} {
+    max-width: 80vw;
+  }
 `;
 
-const StyledThumbnail = styled.img`
-  height: 450px;
-  object-fit: cover;
-  width: 100%;
-  opacity: 0.75;
+const StyledBreadCrumb = styled.div`
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  margin: 30px 0 50px 30px;
+  clip-path: polygon(0 0, 100% 1%, 93% 100%, 0% 100%);
+  transition: all 0.4s ease;
+  background: ${(props) => props.theme.secondary};
+  padding: 5px 15px;
+  cursor: pointer;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  path {
+    color: white;
+  }
+
+  &:hover {
+    transform: rotateZ(6deg);
+  }
+
 `;
 
 const StyledTextWrapper = styled.div`padding: 40px 30px;`;
@@ -80,6 +106,10 @@ const StyledHeader = styled.div`
 
 const StyledIcons = styled.div`
   display: flex;
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    margin-left: 10px;
+  }
 `;
 
 const StyledIconWrapper = styled.div`
@@ -98,5 +128,13 @@ const StyledIconWrapper = styled.div`
   img {
     width: 100%;
     height: 100%;
+  }
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    box-sizing: content-box;
+    margin: 0 5px;
+    padding: 6px;
+    width: 20px;
+    height: 20px;
   }
 `;

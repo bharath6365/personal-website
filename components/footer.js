@@ -5,6 +5,7 @@ import {
   FaGithub,
   FaLinkedin,
 } from "react-icons/fa"
+import GlobalConstants from '../styles/Global-Constants';
 
 const Footer = ({ settings }) => {
   const footerContent= settings.content.main_footer[0];
@@ -67,12 +68,17 @@ const StyledIconsWrapper = styled.div`
   justify-content: space-evenly;
   max-width: 30vw;
   text-align: center;
-  margin: 30px auto
+  margin: 30px auto;
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    max-width: 80vw;
+  }
 `;
 
 const StyledIconWrapper = styled.div`
   width: 50px;
   height: 50px;
+  box-sizing: content-box;
   padding: 20px;
   position: relative;
 

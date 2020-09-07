@@ -11,6 +11,8 @@ import Tags from './common/Tags';
 import SingleTag from './common/SingleTag';
 import SummaryCard from './common/SummaryCard'
 import PrimitiveTextContent from './common/typography/PrimitiveTextContent'
+import ButtonGroup from './common/typography/ButtonGroup';
+import Button from './common/typography/Button';
 
 const Components = {
   'Banner': Banner,
@@ -22,7 +24,9 @@ const Components = {
   'summary-card': SummaryCard,
   'Tags': Tags,
   'SingleTag': SingleTag,
-  'primitive-text-content': PrimitiveTextContent
+  'primitive-text-content': PrimitiveTextContent,
+  'ButtonGroup': ButtonGroup,
+  'Button': Button
 }
 
 const Component = ({blok, settings}) => {

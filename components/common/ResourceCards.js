@@ -1,31 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import GlobalConstants from '../../styles/Global-Constants';
+import Link from 'next/link';
 
-const ResourceCards = ({ cards, enableVerticalBoxShadow=true }) => {
+const ResourceCards = ({ cards, enableVerticalBoxShadow = true }) => {
   return (
     <StyledCardsWrapper>
       {cards.map((card) => {
         return (
-          <StyledCard enableVerticalBoxShadow={enableVerticalBoxShadow} key={card._uid} className="small-card">
-            <StyledImageContainer>
-              <img src={card.image_url} />
-            </StyledImageContainer>
+          <Link href="/projects/[slug]" as={card.url}>
+            <StyledCard enableVerticalBoxShadow={enableVerticalBoxShadow} key={card._uid} className="small-card">
+              <StyledImageContainer>
+                <img src={card.image_url} />
+              </StyledImageContainer>
 
-            <StyledContent>
-              <StyledInitialContent>{card.title}</StyledInitialContent>
+              <StyledContent>
+                <StyledInitialContent>{card.title}</StyledInitialContent>
 
-              <StyledHoverContent>
-                <p>
-                  {card.description}
-                </p>
-              </StyledHoverContent>
-            </StyledContent>
-          </StyledCard>
+                <StyledHoverContent>
+                  <p>{card.description}</p>
+                </StyledHoverContent>
+              </StyledContent>
+            </StyledCard>
+          </Link>
         );
       })}
     </StyledCardsWrapper>
   );
-}
+};
 
 const StyledCardsWrapper = styled.div`
   display: flex;
@@ -42,11 +44,11 @@ const StyledContent = styled.div`
 `;
 
 const StyledInitialContent = styled.div`
-  color: inherit;
+  color: ${(props) => props.theme.primary};
   transition: transform 0.25s ease;
   font-size: 1.25rem;
   transform-origin: left center;
-  color: #edd5f4;
+  margin-bottom: 20px;
 `;
 
 const StyledHoverContent = styled.div`
@@ -74,8 +76,8 @@ const StyledCard = styled.div`
   border-radius: 15px;
   overflow: hidden;
   background: #0f0b18;
-  box-shadow: ${(props) => props.enableVerticalBoxShadow ? "-1rem 0 3rem #000": "-1rem 0 1rem #000"};
-  transition: all .3s ease; 
+  box-shadow: -1rem 0 3rem #005aff59;
+  transition: all .3s ease;
   color: white;
   margin: 0;
   cursor: pointer;
@@ -89,19 +91,31 @@ const StyledCard = styled.div`
     }
 
     ${StyledInitialContent} {
-      transform: scale(1.45);
+      transform: scale(1.35);
     }
 
     img {
       filter: blur(0px);
-    }  
-
+    }
   }
 
   &:not(:first-child) {
     margin-left: -130px;
   }
-`;
 
+  @media ${GlobalConstants.mobileMediaQuery} {
+    &:not(:first-child) {
+      margin-left: 0;
+    }
+
+    ${StyledHoverContent} {
+      opacity: 1;
+    }
+
+    ${StyledInitialContent} {
+      transform: scale(1);
+    }
+  }
+`;
 
 export default ResourceCards;

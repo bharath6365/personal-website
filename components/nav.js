@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+
 import GlobalConstants from '../styles/Global-Constants';
 
 const Nav = ({ settings }) => (
   <NavStyled>
     <NavWrapper className="l-page">
-      <LogoWrapper>
-        <img src="/images/bee.png" />
-      </LogoWrapper>
+      <Link href="/">
+        <LogoWrapper>
+          <img src="/images/bee.png" />
+       </LogoWrapper>
+      </Link>
+      
 
       <ContentWrapper>
         {settings &&
@@ -19,6 +23,8 @@ const Nav = ({ settings }) => (
             );
           })}
       </ContentWrapper>
+
+  
     </NavWrapper>
   </NavStyled>
 );
@@ -33,8 +39,10 @@ const NavStyled = styled.nav`
   left: 0;
   width: 100%;
   height: ${GlobalConstants.navHeight + "px"};
-  z-index: 100;
+  z-index: 1000;
   display: flex;
+
+  
 
   a {
     color: white;
@@ -50,6 +58,7 @@ const NavWrapper = styled.div`
 
 const LogoWrapper = styled.div`
   flex: 1;
+  cursor: pointer;
 
   img {
     width: 60px;
@@ -91,5 +100,9 @@ const ContentWrapper = styled.div`
 
   a:hover:before {
     transform: scaleX(1);
+  }
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    display: none;
   }
 `;

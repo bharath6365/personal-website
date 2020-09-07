@@ -53,7 +53,13 @@ const StyledSummaryCardsSection = styled.section`
 
 const StyledContainer = styled.div`display: flex;`
 
-const StyledIndex = styled.div`width: 30%;`;
+const StyledIndex = styled.div`
+  width: 30%;
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    display: none;
+  }
+`;
 
 const StyledList = styled.ul`
   position: sticky;
@@ -68,4 +74,10 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledCardsWrapper = styled.div`width: 80%;`;
+const StyledCardsWrapper = styled.div`
+  width: 80%;
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    width: 100%;
+  }
+`;
