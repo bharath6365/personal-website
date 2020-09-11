@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import Page from '../../components/Page'
 import Layout from '../../components/layout'
 import StoryblokService from '../../utils/storyblok-service'
@@ -35,6 +36,9 @@ export default class extends React.Component {
 
     return (
       <Layout settings={settingsContent}>
+        <Head>
+          <title>Personal Projects</title>
+        </Head>
         {/* We will define these settings later on */}
         <Page settings={settingsContent} body={bodyOfPage} />
       </Layout>

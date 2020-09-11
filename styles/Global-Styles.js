@@ -4,18 +4,18 @@ import GlobalConstants from './Global-Constants';
 const GlobalStyles = createGlobalStyle`
   * {
     color: black;
-    font-family: 'Rubik', sans-serif;
   }
 
   body {
     margin: 0;
+    font-family: 'Rubik', sans-serif;
   }
 
   a {
     color: ${GlobalTheme.secondary};
   }
 
-  h1, h2, h3, h4,h5, h6 {
+  h1, h2, h3, h4,h5, h6, .highlighter-heading {
     font-family: 'Roboto Condensed', sans-serif;
   }
 
@@ -83,6 +83,10 @@ const GlobalStyles = createGlobalStyle`
 
   h2 {
     font-size: 2.25rem;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   pre {

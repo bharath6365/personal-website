@@ -7,25 +7,27 @@ import Richtext from './typography/Richtext';
 import ResourceCards from './ResourceCards';
 
 const SummaryCard = ({ settings, card, id }) => {
+  console.log('Card is', card);
   return (
-    <StyledCard id={"#" + id}>
+    <StyledCard id={'#' + id}>
       <StyledHeader>
         <StyledHeadingPrimary>{card.heading}</StyledHeadingPrimary>
-        {card.description && (
-          <Richtext content={card.description.content} />
-        )}
+        {card.description && <Richtext content={card.description.content} />}
       </StyledHeader>
-      
 
       <StyledRight>
         {card.body &&
           card.body.map((component) => {
             if (component.component === 'primitive-text-content') {
-              return <PrimitiveTextContent key={component._uid} body={component.body} />;
+              return (
+                <StyledRichTextWrapper className={card.border_separation ? 'bordered' : ''}>
+                  <PrimitiveTextContent key={component._uid} body={component.body} />
+                </StyledRichTextWrapper>
+              );
             } else if (component.component === 'Tags') {
               return <Tags content={component} />;
             } else if (component.component === 'section-resource-cards') {
-              return <ResourceCards enableVerticalBoxShadow={false} cards={settings.content.project_cards} />
+              return <ResourceCards enableVerticalBoxShadow={false} cards={settings.content.project_cards} />;
             }
           })}
       </StyledRight>
@@ -34,7 +36,6 @@ const SummaryCard = ({ settings, card, id }) => {
 };
 
 export default SummaryCard;
-
 
 const StyledCard = styled.div`
   background: #fff;
@@ -71,7 +72,7 @@ const StyledCard = styled.div`
     border-left: 0;
     border-top: 0;
   }
-  
+
   &:hover {
     transform: translateY(-2px);
     &:before {
@@ -92,9 +93,7 @@ const StyledCard = styled.div`
   }
 `;
 
-const StyledHeader = styled.div`
-  margin-bottom: 45px;
-`;
+const StyledHeader = styled.div`margin-bottom: 45px;`;
 
 const StyledHeadingPrimary = styled.h3`
   font-size: 2.25rem;
@@ -102,6 +101,15 @@ const StyledHeadingPrimary = styled.h3`
   letter-spacing: 0.4px;
   text-decoration: underline;
   text-decoration-color: ${(props) => props.theme.secondary};
+`;
+
+const StyledRichTextWrapper = styled.div`
+  &.bordered {
+    &:not(:last-of-type) {
+      margin-bottom: 20px;
+      border-bottom: 1px solid ${(props) => props.theme.primary};
+    }
+  }
 `;
 
 const StyledRight = styled.div``;

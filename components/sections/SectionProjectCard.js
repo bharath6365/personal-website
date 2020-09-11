@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import RichText from '../common/typography/Richtext';
 import SbEditable from 'storyblok-react';
-import {FaArrowLeft} from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import SectionHeader from '../common/typography/SectionHeader';
 import Tags from '../common/Tags';
 import GlobalConstants from '../../styles/Global-Constants';
@@ -16,11 +16,10 @@ const SectionProjectCard = ({ blok }) => {
         <Link href="/projects">
           <StyledBreadCrumb>
             <FaArrowLeft />
-              Projects
+            Projects
           </StyledBreadCrumb>
         </Link>
         <StyledContentWrapper>
-
           <StyledTextWrapper>
             <StyledHeader>
               <StyledSkewedTitle>{blok.title}</StyledSkewedTitle>
@@ -43,6 +42,13 @@ const SectionProjectCard = ({ blok }) => {
 
             <RichText content={blok.text_content.content} />
 
+            <a href={blok.project_link} target="_blank">
+              <StyledCTA>
+                Take me there
+                <FaArrowRight />
+              </StyledCTA>
+            </a>
+
             <Tags content={blok.tags[0]} />
           </StyledTextWrapper>
         </StyledContentWrapper>
@@ -59,6 +65,7 @@ const StyledContentWrapper = styled.div`
   max-width: 65vw;
   margin: auto;
   background: #fff;
+  border-radius: 10px;
 
   @media ${GlobalConstants.tabletMediaQuery} {
     max-width: 80vw;
@@ -87,7 +94,26 @@ const StyledBreadCrumb = styled.div`
   &:hover {
     transform: rotateZ(6deg);
   }
+`;
 
+const StyledCTA = styled.div`
+  display: inline-flex;
+  align-items: center;
+  margin: 20px 0;
+  clip-path: polygon(0 0, 100% 1%, 93% 100%, 0% 100%);
+  transition: all 0.4s ease-out;
+  background: ${(props) => props.theme.primary};
+  padding: 5px 15px;
+  cursor: pointer;
+  transform: rotateZ(-4deg);
+
+  svg {
+    margin-left: 5px;
+  }
+
+  &:hover {
+    transform: rotateZ(0);
+  }
 `;
 
 const StyledTextWrapper = styled.div`padding: 40px 30px;`;
