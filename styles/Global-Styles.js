@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     color: ${GlobalTheme.secondary};
+    word-break: break-word;
   }
 
   h1, h2, h3, h4,h5, h6, .highlighter-heading {
@@ -93,8 +94,9 @@ const GlobalStyles = createGlobalStyle`
     color: white;
     background: black;
     padding: 20px;
-    line-height: 1.5rem;
-    font-size: 0.925rem;
+    line-height: 1.625rem;
+    font-family: inherit;
+    font-size: 0.9rem;
   }
 
   hr {

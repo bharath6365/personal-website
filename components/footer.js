@@ -4,6 +4,7 @@ import Particles from './common/Particles';
 import {
   FaGithub,
   FaLinkedin,
+  FaEnvelope
 } from "react-icons/fa"
 import GlobalConstants from '../styles/Global-Constants';
 
@@ -28,6 +29,14 @@ const Footer = ({ settings }) => {
               <FaLinkedin />
             </StyledIconWrapper>
           </a>
+
+          <a href={footerContent.email_link} target="_blank">
+            <StyledIconWrapper>
+              <FaEnvelope />
+            </StyledIconWrapper>
+          </a>
+
+
         </StyledIconsWrapper>
         
         <StyledCopyRights>
@@ -71,7 +80,7 @@ const StyledIconsWrapper = styled.div`
   margin: 30px auto;
 
   @media ${GlobalConstants.mobileMediaQuery} {
-    max-width: 80vw;
+    max-width: 95vw;
   }
 `;
 

@@ -15,7 +15,7 @@ const SectionTextContent = ({ blok }) => {
 
           <RichText content={blok.body.content} />
 
-          {blok.buttonGroup && (
+          {blok.buttonGroup && blok.buttonGroup[0] && (
             <ButtonGroup buttons={blok.buttonGroup[0].buttons} />
           )}
         </div>

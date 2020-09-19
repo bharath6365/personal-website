@@ -1,5 +1,6 @@
 // Component for displaying the Section Header.
 import React, { Component } from 'react';
+import ReactPlayer from 'react-player/file';
 import styled from 'styled-components';
 import Link from 'next/link';
 import RichText from '../common/typography/Richtext';
@@ -31,23 +32,33 @@ const SectionProjectCard = ({ blok }) => {
                   </StyledIconWrapper>
                 </a>
 
-                {/* Code */}
-                <a href={blok.project_link} target="_blank">
-                  <StyledIconWrapper>
-                    <img src="/images/link.svg" alt="Code Link" />
-                  </StyledIconWrapper>
-                </a>
+                {/* Project */}
+                {blok.project_link && (
+                  <a href={blok.project_link} target="_blank">
+                    <StyledIconWrapper>
+                      <img src="/images/link.svg" alt="Code Link" />
+                    </StyledIconWrapper>
+                  </a>
+                )}
               </StyledIcons>
             </StyledHeader>
 
             <RichText content={blok.text_content.content} />
 
-            <a href={blok.project_link} target="_blank">
-              <StyledCTA>
-                Take me there
-                <FaArrowRight />
-              </StyledCTA>
-            </a>
+            {blok.project_link && (
+              <a href={blok.project_link} target="_blank">
+                <StyledCTA>
+                  Take me there
+                  <FaArrowRight />
+                </StyledCTA>
+              </a>
+            )}
+
+            {blok.video_link && (
+              <StyledVideoWrapper>
+                <ReactPlayer controls url={blok.video_link} />
+              </StyledVideoWrapper>
+            )}
 
             <Tags content={blok.tags[0]} />
           </StyledTextWrapper>
@@ -69,6 +80,10 @@ const StyledContentWrapper = styled.div`
 
   @media ${GlobalConstants.tabletMediaQuery} {
     max-width: 80vw;
+  }
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    max-width: 95vw;
   }
 `;
 
@@ -116,7 +131,25 @@ const StyledCTA = styled.div`
   }
 `;
 
-const StyledTextWrapper = styled.div`padding: 40px 30px;`;
+const StyledTextWrapper = styled.div`
+  padding: 40px 30px;
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    padding: 30px 20px;
+  }
+`;
+
+const StyledVideoWrapper = styled.div`
+  > div {
+    height: 400px !important;
+    margin: 30px auto 10px;
+
+    @media ${GlobalConstants.mobileMediaQuery} {
+      width: 100% !important;
+      height: 200px !important;
+    }
+  }
+`;
 
 const StyledSkewedTitle = styled.h2`
   transform: skew(-20deg);

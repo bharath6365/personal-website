@@ -30,6 +30,7 @@ const SummaryCard = ({ settings, card, id }) => {
               return <ResourceCards enableVerticalBoxShadow={false} cards={settings.content.project_cards} />;
             }
           })}
+          
       </StyledRight>
     </StyledCard>
   );
