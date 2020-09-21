@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h1, h2, h3, h4,h5, h6, .highlighter-heading {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
   }
 
   p {
@@ -44,29 +44,30 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .highlighter-heading {
-    display: inline-block;
-    text-align: center;
+    display: block;
     margin: auto;
-    padding: 20px;
-    font-family: 'Roboto Condensed', sans-serif;
-    background: ${GlobalTheme.primary};
-    color: black;
-    transform: skewX(0deg);
+    padding: 20px 0;
     transition: letter-spacing 0.3s ease-in-out;
-    cursor: pointer;
-    font-size: 3.25rem;
-    color: black !important;
+    font-size: 5.5rem;
+    color: ${props => props.theme.primary};
+
+    &.white {
+      color: white;
+    }
+
+    @media ${GlobalConstants.mobileMediaQuery} {
+      padding: 10px 0;
+      text-align: center;
+    }
   }
 
-  .highlighter-heading:hover {
-    letter-spacing: 0.35rem;
-  }
   
   .background-primary {
     background: ${GlobalTheme.primary};
     padding: 10px;
     display: inline-block;
-    transform: skewX(-12deg)
+    transform: skewX(-12deg);
+    font-family: 'Rubik', sans-serif;
   }
 
   .compressed-margin {

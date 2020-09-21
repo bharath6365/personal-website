@@ -1,37 +1,89 @@
-import { Fragment } from 'react';
+
 
 import styled from 'styled-components';
-import Particles from './common/Particles';
+
 
 import SbEditable from 'storyblok-react';
 import RichText from './common/typography/Richtext';
+import GlobalConstants from '../styles/Global-Constants';
 
 const StyledBanner = styled.div`
   position: relative;
-  height: 60vh;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  /* clip-path: polygon(0 0, 100% 0, 100% 89%, 0 100%); */
+  background: black;
+  padding: 50px 80px;
+  
 
   &.none {
     clip-path: none;
   }
+  
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    padding: 80px 20px;
+  }
 `;
 
+const StyledBannerInner = styled.div`
+  max-width: 1140px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    flex-wrap: wrap;
+    padding: 30px 20px;
+  }
+`
+
 const StyledBannerContent = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  text-align: center;
+  padding: 100px 40px 100px 0;
+  min-width: ${props => `${props.width}%` || '50%'};
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    min-width: 100% !important;
+    padding: 0 0 30px;
+
+    p {
+      text-align: center;
+    }
+  }
+`;
+
+const StyledBannerImageContainer = styled.div`
+  padding: 40px 0 0;
+
+  img {
+    max-height: 450px;
+  }
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    padding: 0;
+    margin: auto;
+
+    img {
+      max-width: 175px !important;
+    }
+  }
 `;
 
 const Banner = ({ blok }) => {
+  const image = blok.image || {
+    filename: '',
+    alt: ''
+  }
   return (
     <SbEditable content={blok}>
       <StyledBanner className={blok.clip_path}>
-        <Particles />
-        <StyledBannerContent>
-          <RichText textColor={'white'} content={blok.text_content.content} />
-        </StyledBannerContent>
+        <StyledBannerInner>
+          <StyledBannerContent width={blok.text_width}>
+            <RichText textColor={'white'} content={blok.text_content.content} />
+          </StyledBannerContent>
+          <StyledBannerImageContainer>
+            <img src={image.filename || "/images/male.svg"} alt={image.alt} />
+          </StyledBannerImageContainer>
+        </StyledBannerInner>
+        
       </StyledBanner>
     </SbEditable>
   );
