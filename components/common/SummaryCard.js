@@ -42,7 +42,7 @@ const StyledCard = styled.div`
   background: #fff;
   border-radius: 5px;
   margin: 10px 0 30px;
-  padding: 10px 20px 50px;
+  padding: 25px 20px;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;

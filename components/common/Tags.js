@@ -13,7 +13,14 @@ const Tags = ({ content }) => {
   );
 };
 
-const StyledTagsWrapper = styled.div`margin: 20px 0 10px;`;
+const StyledTagsWrapper = styled.div`
+  margin: 5px 0 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+;
 
 const StyledTagContainer = styled.div`
   display: flex;

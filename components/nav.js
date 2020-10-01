@@ -14,7 +14,7 @@ const Nav = ({ settings }) => {
         <NavWrapper className="l-page">
           <Link href="/">
             <StyledLogoWrapper>
-              <img src="/images/bee.png" />
+              <img src="/images/logo.png" />
             </StyledLogoWrapper>
           </Link>
 
@@ -96,8 +96,8 @@ const StyledLogoWrapper = styled.div`
   }
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
