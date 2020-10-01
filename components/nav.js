@@ -38,7 +38,7 @@ const Nav = ({ settings }) => {
       <StyledMobileNav className={isOpen ? 'active' : ''}>
         <Link href="/">
           <StyledLogoWrapper>
-            <img src="/images/bee.png" />
+            <img src="/images/logo.png" />
           </StyledLogoWrapper>
         </Link>
 
