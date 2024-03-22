@@ -1,11 +1,13 @@
 
 
 import styled from 'styled-components';
+import {useRef} from 'react'
 
 
 import SbEditable from 'storyblok-react';
 import RichText from './common/typography/Richtext';
 import GlobalConstants from '../styles/Global-Constants';
+import { useEffect } from 'react';
 
 const StyledBanner = styled.div`
   position: relative;
@@ -39,6 +41,9 @@ const StyledBannerInner = styled.div`
 const StyledBannerContent = styled.div`
   padding: 100px 40px 100px 0;
   min-width: ${props => `${props.width}%` || '50%'};
+  transform: translateY(-100%);
+  filter: blur(5px);
+  transition: transform 0.75s ease-in-out, filter 2s ease-in-out;
 
   @media ${GlobalConstants.mobileMediaQuery} {
     min-width: 100% !important;
@@ -72,11 +77,21 @@ const Banner = ({ blok }) => {
     filename: '',
     alt: ''
   }
+
+  const bannerRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      bannerRef.current.style.transform = 'translateY(0)';
+      bannerRef.current.style.filter = 'blur(0)'
+    }, 10)
+
+  }, [])
   return (
     <SbEditable content={blok}>
       <StyledBanner className={blok.clip_path}>
         <StyledBannerInner>
-          <StyledBannerContent width={blok.text_width}>
+          <StyledBannerContent ref={bannerRef} width={blok.text_width}>
             <RichText textColor={'white'} content={blok.text_content.content} />
           </StyledBannerContent>
           <StyledBannerImageContainer>

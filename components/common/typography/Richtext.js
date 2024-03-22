@@ -23,7 +23,7 @@ const RichText = ({content, textColor}) => {
     __html: HTML,
   }
 }
-  
+ 
   return (
     <StyledRichTextWrapper textColor={textColor}>
       {content && content.map(text => {

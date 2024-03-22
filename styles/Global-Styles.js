@@ -97,9 +97,33 @@ const GlobalStyles = createGlobalStyle`
     padding: 20px;
     line-height: 1.625rem;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    overflow: hidden;
+    letter-spacing: 0.3px;
+    line-height: 1.75rem;
+    font-family: 'Josefin Sans';
+    margin-top: 1rem;
+    transition: transform 0.45 ease-in;
+    border-radius: 20px;
+    animation: rotate 5s infinite ease-in-out;
+    animation-delay: 3s;
+    box-shadow: 
+    0px 0px 10px rgba(255,0,0,0.5), /* Red gradient */
+    0px 0px 20px rgba(0,255,0,0.3);
   }
 
+  pre:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate3d(0, 0, 1, 0deg); }
+    40% { transform: rotate3d(0, 0, 1, 0.75deg); }
+    50% { transform: rotate3d(0, 0, 1, 1.5deg); } 
+    80% { transform: rotate3d(0, 0, 1, 0.75deg); }
+    100% { transform: rotate3d(0, 0, 1, 0deg); } 
+  }
+  
   hr {
     border: 1px solid ${GlobalTheme.primary}
   }
