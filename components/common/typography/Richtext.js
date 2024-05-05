@@ -9,6 +9,11 @@ const StyledRichTextWrapper = styled.div`
   color: ${props => props.textColor || 'black'};
 `;
 
+const StyledPre = styled.pre`
+  white-space: pre-wrap;
+  word-wrap: break-word;
+`;
+
 
 
 
@@ -40,7 +45,7 @@ const RichText = ({content, textColor}) => {
             break;
 
             case "code_block":
-              ElementTag = `pre`
+              ElementTag = StyledPre
             break;
 
             case "bullet_list":
