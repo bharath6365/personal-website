@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 import {useRef} from 'react'
+import Typed from 'react-typed';
+import GlobalTheme from '../styles/Global-Theme'
 
 
 import SbEditable from 'storyblok-react';
@@ -55,6 +57,24 @@ const StyledBannerContent = styled.div`
   }
 `;
 
+const StyledTypingContainer = styled.div`
+  color: white;
+
+  span {
+    font-size: 2rem;
+    tex-decoration: underline;
+    border-bottom: 1px solid  ${GlobalTheme.secondary};
+  }
+
+  @media ${GlobalConstants.mobileMediaQuery} {
+    span {
+      font-size: 0.95rem;
+    }
+    
+  }
+
+`
+
 const StyledBannerImageContainer = styled.div`
   padding: 40px 0 0;
 
@@ -77,7 +97,6 @@ const Banner = ({ blok }) => {
     filename: '',
     alt: ''
   }
-
   const bannerRef = useRef(null);
 
   useEffect(() => {
@@ -93,6 +112,21 @@ const Banner = ({ blok }) => {
         <StyledBannerInner>
           <StyledBannerContent ref={bannerRef} width={blok.text_width}>
             <RichText textColor={'white'} content={blok.text_content.content} />
+            {
+              blok.typing_text && blok.typing_text.length > 0 && 
+               <StyledTypingContainer>
+                <Typed
+                  strings={blok.typing_text}
+                  typeSpeed={50}
+                  backDelay={1500}
+                  backSpeed={40}
+                  startDelay={2000}
+                  loop
+                />
+              </StyledTypingContainer> 
+            }
+            
+            
           </StyledBannerContent>
           <StyledBannerImageContainer>
             <img src={image.filename || "/images/male.svg"} alt={image.alt} />
