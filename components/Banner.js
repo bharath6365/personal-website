@@ -76,8 +76,6 @@ const StyledTypingContainer = styled.div`
 `
 
 const StyledBannerImageContainer = styled.div`
-  padding: 40px 0 0;
-
   img {
     max-height: 450px;
   }
@@ -129,7 +127,7 @@ const Banner = ({ blok }) => {
             
           </StyledBannerContent>
           <StyledBannerImageContainer>
-            <img src={image.filename || "/images/male.svg"} alt={image.alt} />
+            <img style={{borderRadius: '50%'}} src={"/images/bharath.jpeg"} alt={image.alt} />
           </StyledBannerImageContainer>
         </StyledBannerInner>
         

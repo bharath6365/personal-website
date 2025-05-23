@@ -1,11 +1,12 @@
-
 import Placeholder from './Placeholder'
 import Banner from './Banner'
+import TechStack from './TechStack'
 import SectionHeader from './common/typography/SectionHeader';
 import SectionTextContent from './sections/SectionTextContent';
 import SectionProjectCard from './sections/SectionProjectCard';
 import SectionSummaryCards from './sections/SectionSummaryCards';
 import SectionResourceCards from './sections/SectionResourceCards';
+import SectionTechStack from './sections/SectionTechStack';
 
 import Tags from './common/Tags';
 import SingleTag from './common/SingleTag';
@@ -16,11 +17,13 @@ import Button from './common/typography/Button';
 
 const Components = {
   'Banner': Banner,
+  'TechStack': TechStack,
   'section-header': SectionHeader,
   'section-text-content': SectionTextContent,
   'section-project-card': SectionProjectCard,
   'section-summary-cards': SectionSummaryCards,
   'section-resource-cards': SectionResourceCards,
+  'section-tech-stack': SectionTechStack,
   'summary-card': SummaryCard,
   'Tags': Tags,
   'SingleTag': SingleTag,

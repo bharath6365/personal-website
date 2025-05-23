@@ -1,5 +1,6 @@
 import Component from './index'
 import SbEditable from 'storyblok-react'
+import SectionTechStack from './sections/SectionTechStack'
 
 const Page = ({body, settings}) => {
   return (
@@ -8,6 +9,7 @@ const Page = ({body, settings}) => {
     {body && body.map((blok) =>
       <Component settings={settings} blok={blok} key={blok._uid} />
     )}
+    <SectionTechStack blok={{}} />
   </main>
   </SbEditable>
 )}
