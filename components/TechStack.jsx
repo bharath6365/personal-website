@@ -11,12 +11,12 @@ const SectionWrapper = styled.div`
 // Styled components for the container
 const TechStackContainer = styled.div`
   position: relative;
-  width: 90%;
-  margin: 30px auto 50px;
+  width: 100%;
+  margin: 20px auto 40px;
   overflow: hidden;
   border-radius: 10px;
   background: #000000;
-  padding: 40px 20px 50px;
+  padding: 30px 20px 40px;
   max-width: 90%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 `;
@@ -26,7 +26,7 @@ const TechStackTitle = styled.h2`
   font-family: 'Josefin Sans', sans-serif;
   color: #000000;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-weight: 600;
   position: relative;
   z-index: 5;
