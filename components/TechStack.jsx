@@ -11,26 +11,26 @@ const SectionWrapper = styled.div`
 // Styled components for the container
 const TechStackContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 90%;
   margin: 30px auto 50px;
   overflow: hidden;
   border-radius: 10px;
   background: #000000;
   padding: 40px 20px 50px;
-  max-width: 1400px;
+  max-width: 90%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 `;
 
 const TechStackTitle = styled.h2`
   font-size: 2.5rem;
   font-family: 'Josefin Sans', sans-serif;
-  color: #ffc600;
+  color: #000000;
   text-align: center;
   margin-bottom: 40px;
   font-weight: 600;
   position: relative;
   z-index: 5;
-  text-shadow: 0 0 10px rgba(255, 198, 0, 0.3);
+  text-shadow: none;
 `;
 
 const CategoryContainer = styled.div`
@@ -47,7 +47,7 @@ const CategoryContainer = styled.div`
 
 const CategoryButton = styled.button`
   background: transparent;
-  color: ${props => props.active ? '#ffc600' : '#fff'};
+  color: #000000;
   border: none;
   padding: 10px 25px;
   font-size: 1.1rem;
@@ -75,7 +75,7 @@ const CategoryButton = styled.button`
   }
   
   &:hover {
-    color: #ffc600;
+    color: #000000;
     
     &::after {
       width: ${props => props.active ? '6px' : '4px'};
@@ -237,13 +237,15 @@ const techStackData = {
     { name: 'NodeJS', imageUrl: 'https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg' },
     { name: 'Golang', imageUrl: 'https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Blue.png' },
     { name: 'PostgreSQL', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png' },
-    { name: 'MongoDB', imageUrl: 'https://www.mongodb.com/assets/images/global/leaf.svg' },
+    { name: 'MongoDB', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/2560px-MongoDB_Logo.svg.png' },
     { name: 'Microservices', imageUrl: 'https://cdn-icons-png.flaticon.com/512/8636/8636551.png' },
     { name: 'WebSockets', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/WebSocket_logo.png' },
     { name: 'Redis', imageUrl: 'https://cdn.worldvectorlogo.com/logos/redis.svg' },
-    { name: 'Docker', imageUrl: 'https://www.docker.com/sites/default/files/d8/2019-07/vertical-logo-monochromatic.png' },
+    { name: 'Docker', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png' },
     { name: 'Java', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg' },
-    { name: 'Express', imageUrl: 'https://expressjs.com/images/express-facebook-share.png' },
+    { name: 'Express', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png' },
+    { name: 'OpenAI', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg' },
+    { name: 'LangGraph', imageUrl: 'https://avatars.githubusercontent.com/u/142261462' },
   ],
   services: [
     { name: 'Stripe', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png' },
@@ -252,8 +254,9 @@ const techStackData = {
     { name: 'AWS', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg' },
     { name: 'Firebase', imageUrl: 'https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png' },
     { name: 'Vercel', imageUrl: 'https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png' },
-    { name: 'Netlify', imageUrl: 'https://www.netlify.com/img/press/logos/logomark.png' },
+    { name: 'Netlify', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Netlify_logo.svg' },
     { name: 'Cloudflare', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png' },
+    { name: 'n8n', imageUrl: 'https://avatars.githubusercontent.com/u/45487711' },
   ],
 };
 
@@ -336,125 +339,108 @@ const TechStack = () => {
   
   return (
     <SectionWrapper>
-      <TechStackTitle>My Tech Stack</TechStackTitle>
-      <CategoryContainer>
-        <TabHighlight 
-          animate={{ 
-            x: tabBounds.left,
-            width: tabBounds.width
-          }}
-          initial={false}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 30
-          }}
-        />
-        <CategoryButton 
-          ref={buttonRefs.current.frontend}
-          active={activeCategory === 'frontend'} 
-          onClick={() => handleCategoryChange('frontend')}
+      <div className="l-page">
+        <TechStackTitle>My Tech Stack</TechStackTitle>
+        <CategoryContainer>
+          <CategoryButton 
+            ref={buttonRefs.current.frontend}
+            active={activeCategory === 'frontend'} 
+            onClick={() => handleCategoryChange('frontend')}
+          >
+            Frontend
+          </CategoryButton>
+          <CategoryButton 
+            ref={buttonRefs.current.backend}
+            active={activeCategory === 'backend'} 
+            onClick={() => handleCategoryChange('backend')}
+          >
+            Backend
+          </CategoryButton>
+          <CategoryButton 
+            ref={buttonRefs.current.services}
+            active={activeCategory === 'services'} 
+            onClick={() => handleCategoryChange('services')}
+          >
+            Services
+          </CategoryButton>
+        </CategoryContainer>
+        <TechStackContainer 
+          ref={containerRef}
+          onMouseMove={handleMouseMove}
         >
-          Frontend
-        </CategoryButton>
-        <CategoryButton 
-          ref={buttonRefs.current.backend}
-          active={activeCategory === 'backend'} 
-          onClick={() => handleCategoryChange('backend')}
-        >
-          Backend
-        </CategoryButton>
-        <CategoryButton 
-          ref={buttonRefs.current.services}
-          active={activeCategory === 'services'} 
-          onClick={() => handleCategoryChange('services')}
-        >
-          Services
-        </CategoryButton>
-      </CategoryContainer>
-      <TechStackContainer 
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-      >
-        {/* Spotlight overlay with animated opacity */}
-        <SpotlightOverlay 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isAnimating ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-        />
-        
-        <LightBeam
-          initial={{ opacity: 0, scaleY: 0 }}
-          animate={{ 
-            opacity: isAnimating ? 0.8 : 0,
-            scaleY: isAnimating ? 1 : 0
-          }}
-          transition={{ 
-            duration: 0.5,
-            ease: "easeOut"
-          }}
-        />
-        
-        <Torch
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: isAnimating ? 1 : 0,
-            scale: isAnimating ? 1 : 0,
-            y: isAnimating ? -30 : 0
-          }}
-          transition={{ 
-            duration: 0.5,
-            ease: "easeInOut"
-          }}
-        />
-        
-        {/* Moving spotlight that follows cursor */}
-        <Spotlight 
-          animate={{ 
-            x: mousePosition.x - 150,
-            y: mousePosition.y - 150,
-            opacity: isAnimating ? 0 : 0.8,
-            scale: isAnimating ? 0 : 1,
-          }}
-          transition={{ 
-            x: { duration: 0.1, ease: "linear" },
-            y: { duration: 0.1, ease: "linear" },
-            opacity: { duration: 0.3 },
-            scale: { duration: 0.3 }
-          }}
-        />
-        
-        <TechGrid>
-          {techStackData[activeCategory].map((tech, index) => (
-            <TechItem
-              key={tech.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                transition: {
-                  delay: 0.08 * index + (isAnimating ? 0.8 : 0),
-                  duration: 0.4
-                }
-              }}
-              exit={{ opacity: 0, y: -20 }}
-              whileHover={{ 
-                y: -5, 
-                scale: 1.05,
-                boxShadow: "0px 15px 30px 0px rgba(255,255,255,0.15)",
-                transition: {
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 10
-                }
-              }}
-            >
-              <TechLogo src={tech.imageUrl} alt={tech.name} />
-              <TechName>{tech.name}</TechName>
-            </TechItem>
-          ))}
-        </TechGrid>
-      </TechStackContainer>
+          <SpotlightOverlay 
+            animate={{ opacity: isAnimating ? 0.92 : 0 }}
+            transition={{ duration: 0.5 }}
+          />
+          <LightBeam
+            animate={{ 
+              opacity: [0, 0.4, 0], 
+              scaleY: [0.8, 1, 0.9], 
+              scaleX: [0.8, 1, 0.9] 
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 4,
+              ease: "easeInOut",
+            }}
+          />
+          <Torch
+            animate={{ 
+              opacity: isAnimating ? 1 : 0,
+              scale: isAnimating ? 1 : 0,
+              y: isAnimating ? -30 : 0
+            }}
+            transition={{ 
+              duration: 0.5,
+              ease: "easeInOut"
+            }}
+          />
+          <Spotlight 
+            animate={{ 
+              x: mousePosition.x - 150,
+              y: mousePosition.y - 150,
+              opacity: isAnimating ? 0 : 0.8,
+              scale: isAnimating ? 0 : 1,
+            }}
+            transition={{ 
+              x: { duration: 0.1, ease: "linear" },
+              y: { duration: 0.1, ease: "linear" },
+              opacity: { duration: 0.3 },
+              scale: { duration: 0.3 }
+            }}
+          />
+          <TechGrid>
+            {techStackData[activeCategory].map((tech, index) => (
+              <TechItem
+                key={tech.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    delay: 0.08 * index + (isAnimating ? 0.8 : 0),
+                    duration: 0.4
+                  }
+                }}
+                exit={{ opacity: 0, y: -20 }}
+                whileHover={{ 
+                  y: -5, 
+                  scale: 1.05,
+                  boxShadow: "0px 15px 30px 0px rgba(255,255,255,0.15)",
+                  transition: {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10
+                  }
+                }}
+              >
+                <TechLogo src={tech.imageUrl} alt={tech.name} />
+                <TechName>{tech.name}</TechName>
+              </TechItem>
+            ))}
+          </TechGrid>
+        </TechStackContainer>
+      </div>
     </SectionWrapper>
   );
 };

@@ -127,7 +127,7 @@ const Banner = ({ blok }) => {
             
           </StyledBannerContent>
           <StyledBannerImageContainer>
-            <img style={{borderRadius: '50%'}} src={"/images/bharath.jpeg"} alt={image.alt} />
+            <img style={{borderRadius: '50%'}} src={image.filename || "/images/bharath.jpeg"} alt={image.alt} />
           </StyledBannerImageContainer>
         </StyledBannerInner>
         

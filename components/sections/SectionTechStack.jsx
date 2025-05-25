@@ -4,9 +4,7 @@ import SbEditable from 'storyblok-react';
 import TechStack from '../TechStack';
 
 const SectionContainer = styled.section`
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 4rem 0;
 `;
 
 // Error boundary class component
@@ -41,10 +39,12 @@ class ErrorBoundary extends React.Component {
 const SectionTechStack = ({ blok }) => {
   return (
     <SbEditable content={blok}>
-      <SectionContainer>
-        <ErrorBoundary>
-          <TechStack />
-        </ErrorBoundary>
+      <SectionContainer className={blok.background}>
+        <div className="l-page">
+          <ErrorBoundary>
+            <TechStack />
+          </ErrorBoundary>
+        </div>
       </SectionContainer>
     </SbEditable>
   );

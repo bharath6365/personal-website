@@ -7,6 +7,7 @@ import SectionProjectCard from './sections/SectionProjectCard';
 import SectionSummaryCards from './sections/SectionSummaryCards';
 import SectionResourceCards from './sections/SectionResourceCards';
 import SectionTechStack from './sections/SectionTechStack';
+import SectionFeatureCallout from './sections/SectionFeatureCallout';
 
 import Tags from './common/Tags';
 import SingleTag from './common/SingleTag';
@@ -24,6 +25,7 @@ const Components = {
   'section-summary-cards': SectionSummaryCards,
   'section-resource-cards': SectionResourceCards,
   'section-tech-stack': SectionTechStack,
+  'section-feature-callout': SectionFeatureCallout,
   'summary-card': SummaryCard,
   'Tags': Tags,
   'SingleTag': SingleTag,
