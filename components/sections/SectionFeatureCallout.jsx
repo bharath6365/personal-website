@@ -124,11 +124,11 @@ const SectionFeatureCallout = ({ blok }) => {
                         <LottieWrapper 
                           isHovered={hoveredFeature === index}
                           isEven={index % 2 !== 0}
-                          initial={{ 
+                          initial={{
                             opacity: 0, 
-                            x: index % 2 !== 0 ? 80 : -80,
+                            x: typeof window !== 'undefined' && window.innerWidth <= 767 ? 0 : (index % 2 !== 0 ? 80 : -80),
                             scale: 0.5,
-                            rotate: index % 2 !== 0 ? 15 : -15
+                            rotate: typeof window !== 'undefined' && window.innerWidth <= 767 ? 0 : (index % 2 !== 0 ? 15 : -15)
                           }}
                           animate={{ 
                             opacity: 1, 
@@ -150,7 +150,7 @@ const SectionFeatureCallout = ({ blok }) => {
                             loop={hoveredFeature === index}
                             play={true}
                             animationData={lottieData[feature.icon]}
-                            style={{ width: 100, height: 100 }}
+                            className="lottie-player"
                           />
                           <AnimatePresence>
                             {hoveredFeature === index && (
@@ -180,6 +180,13 @@ const SectionFeatureCallout = ({ blok }) => {
 const LottieWrapper = styled(motion.div)`
   position: relative;
   z-index: 2;
+
+  @media (max-width: 767px) {
+    // Reset complex entrance animations for simpler mobile view if they feel off
+    // For example, override initial x, rotate for mobile:
+    // initial: { opacity: 0, scale: 0.5, x: 0, rotate: 0 } 
+    // You might need to adjust the 'animate' prop values here too if overriding initial.
+  }
 `;
 
 const IconHighlight = styled(motion.div)`
@@ -190,6 +197,14 @@ const IconHighlight = styled(motion.div)`
   bottom: -15px;
   border: 1px solid rgba(244, 190, 55, 0.3);
   border-radius: 50%;
+
+  @media (max-width: 767px) {
+    // Potentially adjust size or disable if it doesn't look good with smaller icons
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
 `;
 
 const LottieLoading = styled.div`
@@ -219,6 +234,10 @@ const StyledSection = styled.section`
     background-color: #1a1a1a;
     color: white;
   }
+
+  @media (max-width: 767px) {
+    padding: 2.5rem 0;
+  }
 `;
 
 const FeaturesContainer = styled.div`
@@ -230,6 +249,12 @@ const FeaturesContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   position: relative;
+
+  @media (max-width: 767px) {
+    gap: 2rem; // Reduce gap between features on mobile
+    margin-top: 1.5rem;
+    padding: 0 1rem; // Add some horizontal padding for the container itself
+  }
 `;
 
 const FeatureCard = styled(motion.div)`
@@ -255,6 +280,13 @@ const FeatureCard = styled(motion.div)`
     transform-origin: left;
     transition: transform 0.6s cubic-bezier(0.21, 0.6, 0.35, 1);
   }
+
+  @media (max-width: 767px) {
+    flex-direction: column; // Stack items vertically
+    padding: 1.5rem; // Reduce padding
+    align-items: center; // Center items in column layout
+    text-align: center; // Center text content
+  }
 `;
 
 const FeatureRow = styled(motion.div)`
@@ -264,24 +296,51 @@ const FeatureRow = styled(motion.div)`
   z-index: ${props => props.isHovered ? 2 : 1};
   
   &:nth-child(even) ${FeatureCard} {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; // This will be overridden on mobile by the column direction
+    @media (max-width: 767px) {
+      flex-direction: column; // Ensure even items also stack vertically on mobile
+    }
   }
 `;
 
 const IconContainer = styled.div`
   position: relative;
-  margin: 0 2.5rem;
+  margin: 0 2.5rem; // Default margin for desktop
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.5s cubic-bezier(0.21, 0.6, 0.35, 1);
   transform: ${props => props.isHovered ? props.isEven ? 'translateX(-10px)' : 'translateX(10px)' : 'translateX(0)'};
+
+  // Default Lottie player size for desktop
+  .lottie-player {
+    width: 100px !important; // Original desktop size
+    height: 100px !important; // Original desktop size
+  }
+
+  @media (max-width: 767px) {
+    order: 1; // Icon first on mobile
+    margin: 0 0 1.5rem 0; // Margin below icon on mobile
+    transform: none; // Reset transform for mobile
+    
+    // Lottie animation styling for mobile, overrides the default above
+    .lottie-player {
+        width: 80px !important;
+        height: 80px !important;
+    }
+  }
 `;
 
 const FeatureContent = styled.div`
   flex: 1;
   transition: transform 0.5s cubic-bezier(0.21, 0.6, 0.35, 1);
   transform: ${props => props.isHovered ? 'translateX(5px)' : 'translateX(0)'};
+
+  @media (max-width: 767px) {
+    order: 2; // Content (heading, description) after icon on mobile
+    transform: none; // Reset transform for mobile
+    width: 100%; // Take full width for centered text
+  }
 `;
 
 const FeatureHeading = styled.h3`
@@ -301,6 +360,15 @@ const FeatureHeading = styled.h3`
     background: rgba(244, 190, 55, 0.7);
     transition: width 0.4s cubic-bezier(0.21, 0.6, 0.35, 1);
   }
+
+  @media (max-width: 767px) {
+    font-size: 1.3rem; // Reduced font size for mobile
+    margin-bottom: 0.75rem;
+    &::after {
+        left: 50%; // Center the underline
+        transform: translateX(-50%);
+    }
+  }
 `;
 
 const FeatureDescription = styled.p`
@@ -309,7 +377,13 @@ const FeatureDescription = styled.p`
   margin: 0;
   color: ${props => props.isHovered ? '#555' : '#666'};
   transition: color 0.3s ease;
-  max-width: 90%;
+  max-width: 90%; // Default max-width for desktop text
+
+  @media (max-width: 767px) {
+    font-size: 0.95rem; // Reduced font size for mobile
+    line-height: 1.6;
+    max-width: 100%; // Allow full width for centered text
+  }
 `;
 
 export default SectionFeatureCallout; 

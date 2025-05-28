@@ -6,6 +6,14 @@ import { motion } from 'framer-motion';
 const SectionWrapper = styled.div`
   padding: 4rem 0;
   background: #ffffff;
+
+  @media (max-width: 767px) {
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 0;
+  }
 `;
 
 // Styled components for the container
@@ -19,6 +27,16 @@ const TechStackContainer = styled.div`
   padding: 30px 20px 40px;
   max-width: 90%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 767px) {
+    padding: 20px 10px 30px;
+    max-width: 95%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 5px 25px;
+    margin: 15px auto 30px;
+  }
 `;
 
 const TechStackTitle = styled.h2`
@@ -43,6 +61,16 @@ const CategoryContainer = styled.div`
   overflow: visible;
   width: 100%;
   max-width: 600px;
+
+  @media (max-width: 767px) {
+    gap: 10px;
+    flex-wrap: wrap; // Allow buttons to wrap
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+    margin: 15px auto;
+  }
 `;
 
 const CategoryButton = styled.button`
@@ -82,6 +110,17 @@ const CategoryButton = styled.button`
       height: ${props => props.active ? '6px' : '4px'};
     }
   }
+
+  @media (max-width: 767px) {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
 `;
 
 const TabHighlight = styled(motion.div)`
@@ -118,8 +157,16 @@ const TechGrid = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
   
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
+  // Mobile: 4 columns
+  @media (max-width: 767px) { // Adjusted breakpoint for 4 columns on mobile
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px; // Slightly reduce gap for smaller screens
+  }
+
+  // Smallest mobile: if needed, can go to 2 or 3, but targeting 4 as requested
+  @media (max-width: 480px) { // Example for very small screens if 4 is too crowded
+    grid-template-columns: repeat(3, 1fr); // Fallback to 3 if 4 is too much
+    gap: 10px;
   }
 `;
 
@@ -136,6 +183,16 @@ const TechItem = styled(motion.div)`
   position: relative;
   overflow: hidden;
   height: 160px;
+
+  @media (max-width: 767px) {
+    height: 110px; // Reduced height for 4 columns
+    padding: 10px;
+  }
+
+  @media (max-width: 480px) {
+    height: 100px; // Further reduced height for 3 columns
+    padding: 8px;
+  }
 `;
 
 const TechLogo = styled.img`
@@ -144,6 +201,18 @@ const TechLogo = styled.img`
   object-fit: contain;
   margin-bottom: 10px;
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+
+  @media (max-width: 767px) {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 6px;
+  }
 `;
 
 const TechName = styled.h3`
@@ -152,6 +221,14 @@ const TechName = styled.h3`
   text-align: center;
   margin: 0;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+
+  @media (max-width: 767px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
 `;
 
 const Spotlight = styled(motion.div)`
@@ -175,37 +252,79 @@ const Spotlight = styled(motion.div)`
 
 const Torch = styled(motion.div)`
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 30px;
-  height: 30px;
+  left: -10px;
+  top: 50%;
+  width: 25px;
+  height: 25px;
   background: #ffc600;
   border-radius: 50%;
-  filter: blur(5px);
+  filter: blur(3px);
   box-shadow: 
-    0 0 30px 20px rgba(255, 255, 255, 0.6),
-    0 0 80px 40px #ffc600;
-  z-index: 1;
+    0 0 20px 10px rgba(255, 255, 255, 0.8),
+    0 0 40px 20px #ffc600;
+  z-index: 2;
   pointer-events: none;
   mix-blend-mode: screen;
-  transform-origin: center bottom;
+  transform-origin: left center;
+  transform: translateY(-50%);
 `;
 
 const LightBeam = styled(motion.div)`
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 60%;
-  background: linear-gradient(to top, 
-    rgba(255, 198, 0, 0.3) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0) 100%
+  height: 100%;
+  background: conic-gradient(
+    from 90deg at 0% 50%,
+    rgba(0, 0, 0, 0) 260deg,
+    rgba(255, 198, 0, 0.1) 280deg,
+    rgba(255, 198, 0, 0.2) 300deg,
+    rgba(255, 198, 0, 0.3) 330deg,
+    rgba(255, 255, 255, 0.5) 350deg,
+    rgba(255, 255, 255, 0.6) 360deg,
+    rgba(255, 255, 255, 0.5) 370deg,
+    rgba(255, 198, 0, 0.3) 390deg,
+    rgba(255, 198, 0, 0.2) 420deg,
+    rgba(255, 198, 0, 0.1) 440deg,
+    rgba(0, 0, 0, 0) 460deg
+  );
+  mask-image: radial-gradient(
+    ellipse at 0% 50%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0) 100%
   );
   z-index: 1;
   pointer-events: none;
   mix-blend-mode: screen;
-  transform-origin: center bottom;
+  transform-origin: left center;
+  opacity: 0;
+`;
+
+const LightParticles = styled(motion.div)`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 0.5%
+  );
+  background-size: 12px 12px;
+  mask-image: radial-gradient(
+    ellipse at 0% 50%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
   opacity: 0;
 `;
 
@@ -239,12 +358,10 @@ const techStackData = {
     { name: 'PostgreSQL', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png' },
     { name: 'MongoDB', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/2560px-MongoDB_Logo.svg.png' },
     { name: 'Microservices', imageUrl: 'https://cdn-icons-png.flaticon.com/512/8636/8636551.png' },
-    { name: 'WebSockets', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/WebSocket_logo.png' },
     { name: 'Redis', imageUrl: 'https://cdn.worldvectorlogo.com/logos/redis.svg' },
     { name: 'Docker', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png' },
     { name: 'Java', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg' },
     { name: 'Express', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png' },
-    { name: 'OpenAI', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg' },
     { name: 'LangGraph', imageUrl: 'https://avatars.githubusercontent.com/u/142261462' },
   ],
   services: [
@@ -323,7 +440,7 @@ const TechStack = () => {
         // After changing category, animate spotlight effect
         setTimeout(() => {
           setIsAnimating(false);
-        }, 300);
+        }, 1500);
       }, 500);
     }
   };
@@ -374,24 +491,43 @@ const TechStack = () => {
           />
           <LightBeam
             animate={{ 
-              opacity: [0, 0.4, 0], 
-              scaleY: [0.8, 1, 0.9], 
-              scaleX: [0.8, 1, 0.9] 
+              opacity: isAnimating ? 0.8 : 0,
+              rotate: isAnimating ? [-2, 2, -1] : 0,
+              scale: isAnimating ? 1 : 0,
             }}
             transition={{
-              repeat: Infinity,
-              duration: 4,
-              ease: "easeInOut",
+              opacity: { duration: 0.8 },
+              rotate: {
+                repeat: Infinity,
+                duration: 8,
+                ease: "easeInOut",
+                repeatType: "mirror"
+              },
+              scale: { duration: 0.8 }
+            }}
+          />
+          <LightParticles
+            animate={{ 
+              opacity: isAnimating ? 0.6 : 0,
+              backgroundPosition: ["0% 0%", "100% 100%"],
+            }}
+            transition={{
+              opacity: { duration: 0.5 },
+              backgroundPosition: {
+                repeat: Infinity,
+                duration: 60,
+                ease: "linear",
+              }
             }}
           />
           <Torch
             animate={{ 
               opacity: isAnimating ? 1 : 0,
               scale: isAnimating ? 1 : 0,
-              y: isAnimating ? -30 : 0
+              x: isAnimating ? 10 : -10,
             }}
             transition={{ 
-              duration: 0.5,
+              duration: 0.8,
               ease: "easeInOut"
             }}
           />

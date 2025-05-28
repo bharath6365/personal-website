@@ -40,11 +40,10 @@ const SectionTechStack = ({ blok }) => {
   return (
     <SbEditable content={blok}>
       <SectionContainer className={blok.background}>
-        <div className="l-page">
-          <ErrorBoundary>
-            <TechStack />
-          </ErrorBoundary>
-        </div>
+        <ErrorBoundary>
+          <TechStack />
+        </ErrorBoundary>
+  
       </SectionContainer>
     </SbEditable>
   );
