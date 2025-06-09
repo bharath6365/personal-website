@@ -455,7 +455,6 @@ const TechStack = () => {
   }
   
   return (
-    <SectionWrapper>
       <div className="l-page">
         <TechStackTitle>My Tech Stack</TechStackTitle>
         <CategoryContainer>
@@ -577,7 +576,6 @@ const TechStack = () => {
           </TechGrid>
         </TechStackContainer>
       </div>
-    </SectionWrapper>
   );
 };
 

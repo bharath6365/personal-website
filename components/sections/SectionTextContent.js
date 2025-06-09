@@ -64,22 +64,20 @@ const SectionTextContent = ({ blok }) => {
   const contentVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60, 
-      scale: 0.8,
-      rotateX: -15,
-      filter: "blur(10px)",
+      y: 30,       // Reduced y-offset for a gentler start
+      scale: 0.9,  // Reduced initial scale for a subtler effect
+      filter: "blur(8px)", // Slightly reduced blur
     }, 
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      rotateX: 0,
       filter: "blur(0px)",
       transition: {
-        delay: 0.6, // Wait longer for windows to open more
-        duration: 1.4, // Much longer duration
-        ease: [0.16, 1, 0.3, 1], // More dramatic easing curve
-        staggerChildren: 0.15, // Stagger child animations
+        delay: 0.5,         // Adjusted delay to better sync with window opening
+        duration: 1.0,        // Shorter duration for the container itself
+        ease: [0.16, 1, 0.3, 1], // Keep this nice easing for the container
+        staggerChildren: 0.2, // Increased stagger for more distinct child animations
       },
     },
   };
@@ -87,18 +85,21 @@ const SectionTextContent = ({ blok }) => {
   const childVariants = {
     hidden: { 
       opacity: 0, 
-      y: 40, 
-      scale: 0.9,
-      filter: "blur(5px)",
+      y: 25,          // Start slightly lower
+      rotate: 4,      // Slight initial 2D rotation for a dynamic entrance
+      scale: 0.95,      // Start slightly smaller
+      filter: "blur(4px)",
     },
     visible: {
       opacity: 1,
       y: 0,
+      rotate: 0,      // Rotate back to normal
       scale: 1,
       filter: "blur(0px)",
       transition: {
-        duration: 1.0,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        type: "spring",    // Use a spring for a natural settle effect
+        damping: 15,    // Adjust for bounciness (higher = less bounce)
+        stiffness: 150, // Adjust for speed/energy (lower = softer/slower)
       },
     },
   };
