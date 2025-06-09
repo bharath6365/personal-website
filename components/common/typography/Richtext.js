@@ -31,7 +31,7 @@ const RichText = ({content, textColor}) => {
  
   return (
     <StyledRichTextWrapper textColor={textColor}>
-      {content && content.map(text => {
+      {content && content.map((text, index) => {
           const textContent = text.content && text.content[0];
           // Text Attrs Level will give you 1,2,3,4,5,6. Use this for constructing h1 to h6.
           let ElementTag = `div`;
@@ -64,12 +64,13 @@ const RichText = ({content, textColor}) => {
           if (textContent) {
             return (
             <ElementTag 
+              key={`richtext-${index}-${text.type}`}
               className={textContent.marks && textContent.marks[0].attrs?.class}
               dangerouslySetInnerHTML={createMarkup(text)}
             />
           )
           } else {
-            return <ElementTag />
+            return <ElementTag key={`richtext-${index}-${text.type}-empty`} />
           }
           
         

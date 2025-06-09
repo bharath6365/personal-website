@@ -1,5 +1,4 @@
-import React from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import Router from 'next/router';
@@ -40,10 +39,8 @@ class MyApp extends App {
           <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
           <script dangerouslySetInnerHTML={{__html: script}} />
         </Head>
-        <Container>
-          <Component {...pageProps} />
-          <GlobalStyles />
-        </Container>
+        <Component {...pageProps} />
+        <GlobalStyles />
       </ThemeProvider>
     );
   }

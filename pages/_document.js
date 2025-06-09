@@ -1,6 +1,4 @@
-import React from 'react'
-import Document, { Head, Main, NextScript } from 'next/document'
-import StoryblokService from '../utils/storyblok-service'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
@@ -11,8 +9,9 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) => {
+            return sheet.collectStyles(<App {...props} />)
+          },
         })
 
       const initialProps = await Document.getInitialProps(ctx)
@@ -29,33 +28,25 @@ export default class MyDocument extends Document {
       sheet.seal()
     }
   }
-  
+
   render() {
     return (
-      <html>
+      <Html>
         <Head>
-          <script dangerouslySetInnerHTML={{__html: `var StoryblokCacheVersion = '${StoryblokService.getCacheVersion()}';` }}></script>
-
           <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet" />
-
           <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-
           <meta property="og:url" content="bharath.work" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Bharath: Full Stack Developer" />
           <meta property="og:description" content="Senior Software Engineer with 5 years of experience currently working at Freshworks." />
-
           <meta property="og:image" content="https://bharath.work/images/og.png" />
           <meta name="og:image" content="https://bharath.work/images/og.png" />
-
-
-
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }

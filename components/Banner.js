@@ -1,8 +1,6 @@
-
-
 import styled from 'styled-components';
 import {useRef} from 'react'
-import Typed from 'react-typed';
+import { ReactTyped } from 'react-typed';
 import GlobalTheme from '../styles/Global-Theme'
 
 
@@ -113,7 +111,7 @@ const Banner = ({ blok }) => {
             {
               blok.typing_text && blok.typing_text.length > 0 && 
                <StyledTypingContainer>
-                <Typed
+                <ReactTyped
                   strings={blok.typing_text}
                   typeSpeed={50}
                   backDelay={1500}

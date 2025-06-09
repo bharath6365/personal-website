@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Particles from './common/Particles';
 import {
   FaGithub,
   FaLinkedin,
@@ -12,8 +11,6 @@ const Footer = ({ settings }) => {
   const footerContent= settings.content.main_footer[0];
   return (
     <StyledFooter>
-      <Particles particleType="nasa" />
-
       <StyledContentWrapper className="l-page">
         <h2>{footerContent.title}</h2>
         
@@ -35,15 +32,11 @@ const Footer = ({ settings }) => {
               <FaEnvelope />
             </StyledIconWrapper>
           </a>
-
-
         </StyledIconsWrapper>
         
         <StyledCopyRights>
           {footerContent.copyrights}
         </StyledCopyRights>
-
-
       </StyledContentWrapper>
     </StyledFooter>
   )
@@ -52,18 +45,20 @@ const Footer = ({ settings }) => {
 export default Footer;
 
 const StyledFooter = styled.footer`
-  display: flex;
-  align-items: center;
   position: relative;
   background: black;
   padding: 50px 0;
   text-align: center;
   min-height: 30vh;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledContentWrapper = styled.div`
+  position: relative;
+  z-index: 10;
   color: white;
-  z-index: 100;
+  width: 100%;
 `;
 
 const StyledCopyRights = styled.div`
