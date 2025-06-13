@@ -6,7 +6,12 @@ import ResourceCards from '../common/ResourceCards';
 
 
 const SectionResourceCards = ({ settings, blok }) => {
-  const cards = settings.content.project_cards;
+  const cards = blok.type === 'personal-projects' 
+    ? settings.content.project_cards 
+    : blok.type === 'portfolio'
+      ? settings.content.portfolio
+      : [];
+      
   return (
     <SbEditable content={blok}>
       <StyledResourcelCardsSection className="dark">
