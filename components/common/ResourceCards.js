@@ -91,7 +91,7 @@ const StyledCard = styled.div`
     }
 
     ${StyledInitialContent} {
-      transform: scale(1.35);
+      transform: scale(1.1);
     }
 
     img {
