@@ -253,27 +253,25 @@ const Spotlight = styled(motion.div)`
 const Torch = styled(motion.div)`
   position: absolute;
   left: -10px;
-  top: 50%;
-  width: 25px;
-  height: 25px;
-  background: #ffc600;
-  border-radius: 50%;
-  filter: blur(3px);
-  box-shadow: 
-    0 0 20px 10px rgba(255, 255, 255, 0.8),
-    0 0 40px 20px #ffc600;
+  top: calc(50% - 25px);
+  width: 60px;
+  height: 60px;
+  background-image: url('/images/torch.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   z-index: 2;
   pointer-events: none;
-  mix-blend-mode: screen;
   transform-origin: left center;
   transform: translateY(-50%);
+  filter: drop-shadow(0 0 10px rgba(255, 198, 0, 0.8));
 `;
 
 const LightBeam = styled(motion.div)`
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 30px;
+  width: calc(100% - 30px);
   height: 100%;
   background: conic-gradient(
     from 90deg at 0% 50%,
@@ -523,7 +521,7 @@ const TechStack = () => {
             animate={{ 
               opacity: isAnimating ? 1 : 0,
               scale: isAnimating ? 1 : 0,
-              x: isAnimating ? 10 : -10,
+              x: isAnimating ? 0 : -10,
             }}
             transition={{ 
               duration: 0.8,
