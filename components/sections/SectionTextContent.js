@@ -37,26 +37,30 @@ const SectionTextContent = ({ blok }) => {
 
   const leftWindowVariants = {
     hidden: {
-      x: 0, // Start at normal position
+      x: 0,
+      rotateY: 0,
     },
     visible: {
-      x: "-100%", // Slide completely to the left
+      x: "-120%", // Increased slide distance
+      rotateY: -15, // Add 3D rotation
       transition: {
-        duration: 1.0,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 1.2,
+        ease: [0.6, 0.01, 0.05, 0.95], // More dramatic easing
       },
     },
   };
 
   const rightWindowVariants = {
     hidden: {
-      x: 0, // Start at normal position
+      x: 0,
+      rotateY: 0,
     },
     visible: {
-      x: "100%", // Slide completely to the right
+      x: "120%", // Increased slide distance
+      rotateY: 15, // Add 3D rotation
       transition: {
-        duration: 1.0,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 1.2,
+        ease: [0.6, 0.01, 0.05, 0.95], // More dramatic easing
       },
     },
   };
@@ -64,20 +68,22 @@ const SectionTextContent = ({ blok }) => {
   const contentVariants = {
     hidden: { 
       opacity: 0, 
-      y: 30,       // Reduced y-offset for a gentler start
-      scale: 0.9,  // Reduced initial scale for a subtler effect
-      filter: "blur(8px)", // Slightly reduced blur
+      y: 50,       // Increased y-offset
+      scale: 0.85,  // More dramatic scale
+      rotateX: 10,  // Add 3D rotation
+      filter: "blur(12px)", // Increased blur
     }, 
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
+      rotateX: 0,
       filter: "blur(0px)",
       transition: {
-        delay: 0.5,         // Adjusted delay to better sync with window opening
-        duration: 1.0,        // Shorter duration for the container itself
-        ease: [0.16, 1, 0.3, 1], // Keep this nice easing for the container
-        staggerChildren: 0.2, // Increased stagger for more distinct child animations
+        delay: 0.3,         // Reduced delay for better timing
+        duration: 1.2,      // Slightly longer duration
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.15, // Faster stagger for more impact
       },
     },
   };
@@ -85,21 +91,22 @@ const SectionTextContent = ({ blok }) => {
   const childVariants = {
     hidden: { 
       opacity: 0, 
-      y: 25,          // Start slightly lower
-      rotate: 4,      // Slight initial 2D rotation for a dynamic entrance
-      scale: 0.95,      // Start slightly smaller
-      filter: "blur(4px)",
+      y: 40,          // Increased y-offset
+      rotate: 8,      // Increased rotation
+      scale: 0.9,     // More dramatic scale
+      filter: "blur(8px)",
     },
     visible: {
       opacity: 1,
       y: 0,
-      rotate: 0,      // Rotate back to normal
+      rotate: 0,
       scale: 1,
       filter: "blur(0px)",
       transition: {
-        type: "spring",    // Use a spring for a natural settle effect
-        damping: 15,    // Adjust for bounciness (higher = less bounce)
-        stiffness: 150, // Adjust for speed/energy (lower = softer/slower)
+        type: "spring",
+        damping: 12,    // Reduced damping for more bounce
+        stiffness: 100, // Reduced stiffness for more dynamic movement
+        mass: 0.8,      // Added mass for more weight to the animation
       },
     },
   };

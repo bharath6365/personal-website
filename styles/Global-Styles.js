@@ -48,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
     margin: auto;
     padding: 20px 0;
     transition: letter-spacing 0.3s ease-in-out;
-    font-size: 5.5rem;
+    font-size: 4.5rem;
     color: ${props => props.theme.primary};
 
     &.white {
