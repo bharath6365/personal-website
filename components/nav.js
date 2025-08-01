@@ -27,6 +27,9 @@ const Nav = ({ settings }) => {
                   </Link>
                 );
               })}
+            <ContactButton href="https://calendly.com/bharath-kumar-c/" target="_blank" rel="noopener noreferrer">
+              Contact Me
+            </ContactButton>
           </ContentWrapper>
         </NavWrapper>
       </NavStyled>
@@ -51,6 +54,9 @@ const Nav = ({ settings }) => {
                 </Link>
               );
             })}
+          <ContactButton href="https://calendly.com/bharath-kumar-c/" target="_blank" rel="noopener noreferrer">
+            Contact Me
+          </ContactButton>
         </StyledMobileLinks>
       </StyledMobileNav>
     </Fragment>
@@ -201,3 +207,24 @@ const StyledMobileNav = styled.div`
 `;
 
 const StyledMobileLinks = styled.div``;
+
+const ContactButton = styled.a`
+  display: inline-block;
+  padding: 8px 20px;
+  background: ${GlobalTheme.primary};
+  color: black !important;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid ${GlobalTheme.primary};
+  
+  &:hover {
+    opacity: 0.9;
+  }
+  
+  &::before {
+    display: none;
+  }
+`;

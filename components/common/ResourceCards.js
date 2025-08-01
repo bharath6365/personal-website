@@ -59,13 +59,14 @@ const StyledHoverContent = styled.div`
 `;
 
 const StyledImageContainer = styled.div`
-  height: 200px;
+  height: 225px;
   margin: -1.5rem;
 
   img {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    object-fit: fill;
   }
 `;
 

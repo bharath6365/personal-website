@@ -6,7 +6,6 @@ import Link from 'next/link';
 import RichText from '../common/typography/Richtext';
 import SbEditable from 'storyblok-react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import SectionHeader from '../common/typography/SectionHeader';
 import Tags from '../common/Tags';
 import GlobalConstants from '../../styles/Global-Constants';
 

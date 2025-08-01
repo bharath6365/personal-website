@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-export default function Button({ label, link }) {
+export default function Button({ label, link, rounded = false, small = false }) {
   return (
     <Link href={link}>
-      <StyledButton className="button">{label}</StyledButton>
+      <StyledButton className="button" rounded={rounded} small={small}>{label}</StyledButton>
     </Link>
   );
 }
@@ -14,9 +14,9 @@ const StyledButton = styled.button`
   display: flex;
   position: relative;
   align-items: center;
-  border-radius: 5px;
+  border-radius: ${(props) => props.rounded ? '25px' : '5px'};
   color: white !important;
-  padding: 15px 60px;
+  padding: ${(props) => props.small ? '10px 30px' : '15px 60px'};
   border: 2px solid ${(props) => props.theme.secondary};
   outline: none;
   z-index: 1;
@@ -26,6 +26,7 @@ const StyledButton = styled.button`
   transition: 0.6s all ease;
   text-transform: uppercase;
   overflow: hidden;
+  font-size: ${(props) => props.small ? '14px' : '16px'};
 
   &:before {
     position: absolute;
